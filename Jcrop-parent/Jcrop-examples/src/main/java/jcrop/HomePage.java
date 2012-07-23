@@ -1,5 +1,7 @@
 package  jcrop;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.PackageResourceReference;
@@ -39,5 +41,17 @@ public class HomePage extends WebPage {
         settings6.setBgOpacity(0.2);
         settings6.setBoxWidth(350);
         add(new JCropImage("example6", new PackageResourceReference(HomePage.class, "example.jpg"), settings6));
+
+         CroppableSettings settings7 = new CroppableSettings();
+         settings7.setBgColor("pink");
+         settings7.setProvideApiController(true);
+         final JCropImage jcropImage7 = new JCropImage("example7", new PackageResourceReference(HomePage.class, "example.jpg"), settings7);
+
+        AjaxLink<Void> setSelectionLink = new AjaxLink<Void>("setSelection") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                jcropImage7.getApiController().setSelection(new Coordinates(0, 0, 50, 50), target);
+            }
+        };
     }
 }
