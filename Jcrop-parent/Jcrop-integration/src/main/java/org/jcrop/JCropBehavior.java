@@ -84,8 +84,8 @@ public class JCropBehavior extends AbstractDefaultAjaxBehavior {
     }
 
     protected String generateInitJs(Component component) {
-        String jcropInitTemplate = "  (function($) {" + " %s " + " %s " + "%s " +
-                "$('#%s').Jcrop({ " +
+        String jcropInitTemplate = "  (function($) {" + " %s " + " %s " +
+                "%s  $('#%s').Jcrop({ " +
                 "%s}); " +
                 "})(jQuery); ";
 
@@ -109,9 +109,9 @@ public class JCropBehavior extends AbstractDefaultAjaxBehavior {
     private String renderApiController(String markupIp) {
         String result = "";
         if (settings.isProvideApiController()) {
-          result = "jcrop_api_" + markupIp;
+          result = "window.jcrop_api_" + markupIp + " = ";
+          apiController = new JcropController(result);
         }
-
         return result;
     }
 
