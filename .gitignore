@@ -4,6 +4,7 @@
 target
 target/**/*
 *.iml
+rebel.xml
 workspace.xml
 # Package Files #
 *.jar
