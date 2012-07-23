@@ -84,7 +84,7 @@ public class JCropBehavior extends AbstractDefaultAjaxBehavior {
     }
 
     protected String generateInitJs(Component component) {
-        String jcropInitTemplate = "  (function($) {" + " %s " + " %s " +
+        String jcropInitTemplate = "  (function($) {" + " %s " + " %s " + "%s " +
                 "$('#%s').Jcrop({ " +
                 "%s}); " +
                 "})(jQuery); ";
@@ -101,8 +101,18 @@ public class JCropBehavior extends AbstractDefaultAjaxBehavior {
         return String.format(jcropInitTemplate,
                 appendPreviewImage,
                 renderBodyOfJsFunctions(),
+                renderApiController(component.getMarkupId()),
                 component.getMarkupId(),
                 settings.generateSettings());
+    }
+
+    private String renderApiController(String markupIp) {
+        String result = "";
+        if (settings.isProvideApiController()) {
+          result = "jcrop_api_" + markupIp;
+        }
+
+        return result;
     }
 
     protected String renderBodyOfJsFunctions() {
@@ -174,7 +184,13 @@ public class JCropBehavior extends AbstractDefaultAjaxBehavior {
     protected void onCooridnatsChange(Coordinates coordinates) {
     }
 
+    public JcropController getApiController() {
+        return apiController;
+    }
+
     private CroppableSettings settings = null;
+
+    private JcropController apiController = null;
 
     private boolean provideDefaultJsImplementation = true;
 }
