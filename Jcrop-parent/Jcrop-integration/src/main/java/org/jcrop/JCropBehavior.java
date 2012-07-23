@@ -85,8 +85,8 @@ public class JCropBehavior extends AbstractDefaultAjaxBehavior {
 
     protected String generateInitJs(Component component) {
         String jcropInitTemplate = "  (function($) {" + " %s " + " %s " +
-                "%s  $('#%s').Jcrop({ " +
-                "%s}); " +
+                "$('#%s').Jcrop({ " +
+                "%s} %s); " +
                 "})(jQuery); ";
 
         String appendPreviewImage = "";
@@ -101,16 +101,17 @@ public class JCropBehavior extends AbstractDefaultAjaxBehavior {
         return String.format(jcropInitTemplate,
                 appendPreviewImage,
                 renderBodyOfJsFunctions(),
-                renderApiController(component.getMarkupId()),
                 component.getMarkupId(),
-                settings.generateSettings());
+                settings.generateSettings(),
+                renderApiController(component.getMarkupId()));
     }
 
     private String renderApiController(String markupIp) {
         String result = "";
         if (settings.isProvideApiController()) {
-          result = "window.jcrop_api_" + markupIp + " = ";
-          apiController = new JcropController(result);
+          String apiControllerVariableName = "window.jcrop_api_" + markupIp;
+          apiController = new JcropController(apiControllerVariableName);
+          return ", function() {"+apiControllerVariableName+"=this}";
         }
         return result;
     }
