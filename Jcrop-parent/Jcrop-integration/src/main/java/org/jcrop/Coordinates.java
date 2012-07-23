@@ -47,7 +47,7 @@ public class Coordinates implements java.io.Serializable {
     }
 
     public String toJsArray() {
-        return "[x=" + x + ", y=" + y + ", x2=" + x2 + ", y2=" + y2 + "]";
+        return "[" + x + ", " + y + ", " + x2 + ", " + y2 + "]";
     }
 
     @Override
