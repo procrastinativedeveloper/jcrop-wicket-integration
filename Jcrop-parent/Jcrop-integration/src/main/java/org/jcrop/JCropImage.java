@@ -37,7 +37,7 @@ public class JCropImage extends NonCachingImage {
     }
 
     protected void initJCrop(CroppableSettings settings) {
-        add(new JCropBehavior(settings) {
+        add(jCropBehavior = new JCropBehavior(settings) {
             @Override
             protected void onCooridnatsChange(Coordinates coordinates) {
                 JCropImage.this.onCooridnatsChange(coordinates);
@@ -45,7 +45,16 @@ public class JCropImage extends NonCachingImage {
         });
     }
 
+    public JcropController getApiController() {
+        if (null != jCropBehavior) {
+            return  jCropBehavior.getApiController();
+        }
+        return null;
+    }
+
     protected void onCooridnatsChange(Coordinates coordinates) {
         logger.info(coordinates.toString());
     }
+
+    private JCropBehavior jCropBehavior = null;
 }
