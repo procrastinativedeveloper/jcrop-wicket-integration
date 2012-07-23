@@ -53,5 +53,7 @@ public class HomePage extends WebPage {
                 jcropImage7.getApiController().setSelection(new Coordinates(0, 0, 50, 50), target);
             }
         };
+        add(jcropImage7);
+        add(setSelectionLink);
     }
 }
