@@ -15,6 +15,8 @@ public class CroppableSettings implements java.io.Serializable {
     private Integer boxWidth = null;
     private Integer boxHeight = null;
 
+    private boolean provideApiController = Boolean.FALSE;
+
     /*jsFunction*/
     private List<JsFunction> helperFunctions = new ArrayList<JsFunction>();
     private List<JsFunction> onSelectCallbacks = new ArrayList<JsFunction>();
@@ -181,5 +183,21 @@ public class CroppableSettings implements java.io.Serializable {
 
     public void setBoxHeight(Integer boxHeight) {
         this.boxHeight = boxHeight;
+    }
+
+    public Coordinates getSetSelect() {
+        return setSelect;
+    }
+
+    public void setSetSelect(Coordinates setSelect) {
+        this.setSelect = setSelect;
+    }
+
+    public boolean isProvideApiController() {
+        return provideApiController;
+    }
+
+    public void setProvideApiController(boolean provideApiController) {
+        this.provideApiController = provideApiController;
     }
 }
