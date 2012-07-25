@@ -43,7 +43,7 @@ public class JcropController implements Serializable {
         if ( null == target ) {
             throw new IllegalArgumentException("AjaxRequestTarget shoudn't be null");
         }
-        target.appendJavaScript(jcropVariableName+ ".relase();");
+        target.appendJavaScript(jcropVariableName+ ".release();");
     }
 
     public void disable(AjaxRequestTarget target){
