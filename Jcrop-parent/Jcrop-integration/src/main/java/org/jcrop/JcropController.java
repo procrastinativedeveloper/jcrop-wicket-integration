@@ -65,6 +65,7 @@ public class JcropController implements Serializable {
             throw new IllegalArgumentException("AjaxRequestTarget shoudn't be null");
         }
         target.appendJavaScript(jcropVariableName+".destroy();");
+        //TODO: remove variable? jcropVaribaleName?
     }
 
 
