@@ -49,5 +49,21 @@ public class JcropApiUsagePage extends WebPage {
         add(releaseLink);
 
 
+        AjaxLink<Void> enableLink = new AjaxLink<Void>("enable") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                jcropImage.getApiController().enable(target);
+            }
+        };
+
+        AjaxLink<Void> disableLink = new AjaxLink<Void>("disable") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                jcropImage.getApiController().disable(target);
+            }
+        };
+
+
+
     }
 }
