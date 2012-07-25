@@ -63,7 +63,12 @@ public class JcropApiUsagePage extends WebPage {
             }
         };
 
-
-
+         AjaxLink<Void> destroyLink = new AjaxLink<Void>("destroy") {
+             @Override
+             public void onClick(AjaxRequestTarget target) {
+                 jcropImage.getApiController().destroy(target);
+             }
+         };
+        add(destroyLink);
     }
 }
