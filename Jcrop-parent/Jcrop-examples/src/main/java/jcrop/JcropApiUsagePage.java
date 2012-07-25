@@ -4,6 +4,7 @@ package jcrop;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.jcrop.Coordinates;
 import org.jcrop.CroppableSettings;
@@ -35,7 +36,7 @@ public class JcropApiUsagePage extends WebPage {
         AjaxLink<Void> animateToLink = new AjaxLink<Void>("animateTo") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                jcropImage.getApiController().animateTo(new Coordinates(90, 90, 100, 100), target);
+                jcropImage.getApiController().animateTo(new Coordinates(90, 90, 300, 300), target);
             }
         };
         add(animateToLink);
@@ -71,5 +72,13 @@ public class JcropApiUsagePage extends WebPage {
              }
          };
         add(destroyLink);
+
+        add(new Link<Void>("return_to_menu") {
+
+            @Override
+            public void onClick() {
+                setResponsePage(HomePage.class);
+            }
+        });
     }
 }
