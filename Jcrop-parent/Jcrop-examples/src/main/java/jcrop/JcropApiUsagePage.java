@@ -40,7 +40,13 @@ public class JcropApiUsagePage extends WebPage {
         };
         add(animateToLink);
 
-
+        AjaxLink<Void> releaseLink = new AjaxLink<Void>("release") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                jcropImage.getApiController().release(target);
+            }
+        };
+        add(releaseLink);
 
 
     }
