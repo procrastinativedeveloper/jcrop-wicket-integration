@@ -23,7 +23,7 @@ public class CroppableSettings implements java.io.Serializable {
     private List<JsFunction> onChangeCallbacks = new ArrayList<JsFunction>();
     private List<JsFunction> onReleaseCallbacks = new ArrayList<JsFunction>();
 
-    public Object generateSettings() {
+    public String generateSettings() {
         StringBuilder result = new StringBuilder();
 
         if (onChangeCallbacks.size() > 0) {
