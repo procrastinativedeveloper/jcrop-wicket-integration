@@ -1,0 +1,6 @@
+ (function($) { ${appendPreviewImage}
+                ${bodyForJsFunction}
+                $('#${markupId}').Jcrop({
+                ${settings}} ${renderApiController});
+                })(jQuery);
+

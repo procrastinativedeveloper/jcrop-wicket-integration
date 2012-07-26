@@ -10,6 +10,7 @@ import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.util.template.PackageTextTemplate;
 import org.jcrop.utils.JsFunction;
 
 import java.util.ArrayList;
@@ -84,11 +85,6 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
     }
 
     protected String generateInitJs(Component component) {
-        String jcropInitTemplate = "  (function($) {" + " %s " + " %s " +
-                "$('#%s').Jcrop({ " +
-                "%s} %s); " +
-                "})(jQuery); ";
-
         String appendPreviewImage = "";
         if (settings.isShowingPreview()) {
             PreviewSettings preview = settings.getPreview();
@@ -97,13 +93,14 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
                     "$('#%s').append('<img id=\"previewImg\" src=\"' + imageSrc + '\" />').css({'width': '%dpx', 'height':'%dpx', 'overflow': 'hidden'});"
                     , component.getMarkupId(), preview.getPreviewDivName(), preview.getPreviewWidth(), preview.getPreviewHeight());
         }
+        Map<String, String> valuesForTemplate = new HashMap<String, String>();
+        valuesForTemplate.put("appendPreviewImage", appendPreviewImage);
+        valuesForTemplate.put("bodyForJsFunction", renderBodyOfJsFunctions());
+        valuesForTemplate.put("markupId", component.getMarkupId());
+        valuesForTemplate.put("settings", settings.generateSettings());
+        valuesForTemplate.put("renderApiController", renderApiController(component.getMarkupId()));
 
-        return String.format(jcropInitTemplate,
-                appendPreviewImage,
-                renderBodyOfJsFunctions(),
-                component.getMarkupId(),
-                settings.generateSettings(),
-                renderApiController(component.getMarkupId()));
+        return new PackageTextTemplate(JcropBehavior.class, "InitScript.template").asString(valuesForTemplate);
     }
 
     private String renderApiController(String markupIp) {
