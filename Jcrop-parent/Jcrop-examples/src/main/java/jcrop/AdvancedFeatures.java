@@ -19,7 +19,7 @@ public class AdvancedFeatures extends WebPage {
         add(new JcropImage("example4", new PackageResourceReference(HomePage.class, "example.jpg"), settings4));
 
         CroppableSettings settings5 = new CroppableSettings();
-        settings5.setAspectRatio(1);
+        settings5.setAspectRatio(1.0);
         settings5.setPreview(new PreviewSettings("preview", 100, 100));
         add(new JcropImage("example5", new PackageResourceReference(HomePage.class, "example.jpg"), settings5));
 
