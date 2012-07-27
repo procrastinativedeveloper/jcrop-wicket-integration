@@ -17,7 +17,7 @@ public class CroppableSettings implements java.io.Serializable {
 
     private boolean provideApiController = Boolean.FALSE;
 
-    /*jsFunction*/
+    /*jsFunctions*/
     private List<JsFunction> helperFunctions = new ArrayList<JsFunction>();
     private List<JsFunction> onSelectCallbacks = new ArrayList<JsFunction>();
     private List<JsFunction> onChangeCallbacks = new ArrayList<JsFunction>();
@@ -60,48 +60,115 @@ public class CroppableSettings implements java.io.Serializable {
         return result.toString();
     }
 
-    public boolean isShowingPreview() {
-        return preview != null;
+    //fluent setters
+    public CroppableSettings setPreview(final PreviewSettings preview) {
+        this.preview = preview;
+        return this;
     }
 
-    public double getAspectRatio() {
+    public CroppableSettings setAspectRatio(final Double aspectRatio) {
+        this.aspectRatio = aspectRatio;
+        return this;
+    }
+
+    public CroppableSettings setSelect(final Coordinates setSelect) {
+        this.setSelect = setSelect;
+        return this;
+    }
+
+    public CroppableSettings setBgColor(final String bgColor) {
+        this.bgColor = bgColor;
+        return this;
+    }
+
+    public CroppableSettings setBgOpacity(final Double bgOpacity) {
+        this.bgOpacity = bgOpacity;
+        return this;
+    }
+
+    public CroppableSettings setBoxWidth(final Integer boxWidth) {
+        this.boxWidth = boxWidth;
+        return this;
+    }
+
+    public CroppableSettings setBoxHeight(final Integer boxHeight) {
+        this.boxHeight = boxHeight;
+        return this;
+    }
+
+    public CroppableSettings setProvideApiController(final boolean provideApiController) {
+        this.provideApiController = provideApiController;
+        return this;
+    }
+
+    public CroppableSettings setHelperFunctions(final List<JsFunction> helperFunctions) {
+        this.helperFunctions = helperFunctions;
+        return this;
+    }
+
+    public CroppableSettings setOnSelectCallbacks(final List<JsFunction> onSelectCallbacks) {
+        this.onSelectCallbacks = onSelectCallbacks;
+        return this;
+    }
+
+    public CroppableSettings setOnChangeCallbacks(final List<JsFunction> onChangeCallbacks) {
+        this.onChangeCallbacks = onChangeCallbacks;
+        return this;
+    }
+
+    public CroppableSettings setOnReleaseCallbacks(final List<JsFunction> onReleaseCallbacks) {
+        this.onReleaseCallbacks = onReleaseCallbacks;
+        return this;
+    }
+
+
+    //getters
+    public PreviewSettings getPreview() {
+        return preview;
+    }
+
+    public Double getAspectRatio() {
         return aspectRatio;
     }
 
-    public void setAspectRatio(double aspectRatio) {
-        this.aspectRatio = aspectRatio;
+    public Coordinates getSelect() {
+        return setSelect;
     }
 
-    public List<JsFunction> getOnSelectCallbacks() {
-        return onSelectCallbacks;
+    public String getBgColor() {
+        return bgColor;
     }
 
-    public void setOnSelectCallbacks(List<JsFunction> onSelectCallbacks) {
-        this.onSelectCallbacks = onSelectCallbacks;
+    public Double getBgOpacity() {
+        return bgOpacity;
     }
 
-    public List<JsFunction> getOnChangeCallbacks() {
-        return onChangeCallbacks;
+    public Integer getBoxWidth() {
+        return boxWidth;
     }
 
-    public void setOnChangeCallbacks(List<JsFunction> onChangeCallbacks) {
-        this.onChangeCallbacks = onChangeCallbacks;
+    public Integer getBoxHeight() {
+        return boxHeight;
     }
 
-    public List<JsFunction> getOnReleaseCallbacks() {
-        return onReleaseCallbacks;
-    }
-
-    public void setOnReleaseCallbacks(List<JsFunction> onReleaseCallbacks) {
-        this.onReleaseCallbacks = onReleaseCallbacks;
+    public boolean isProvideApiController() {
+        return provideApiController;
     }
 
     public List<JsFunction> getHelperFunctions() {
         return helperFunctions;
     }
 
-    public void setHelperFunctions(List<JsFunction> helperFunctions) {
-        this.helperFunctions = helperFunctions;
+    public List<JsFunction> getOnSelectCallbacks() {
+        return onSelectCallbacks;
+    }
+
+    public List<JsFunction> getOnChangeCallbacks() {
+        return onChangeCallbacks;
+    }
+
+    public List<JsFunction> getOnReleaseCallbacks() {
+        return onReleaseCallbacks;
     }
 
     public void putOnSelectCallback(JsFunction jsFunctionCallback) {
@@ -132,72 +199,7 @@ public class CroppableSettings implements java.io.Serializable {
         helperFunctions.add(jsFunction);
     }
 
-    public Coordinates getSelect() {
-        return setSelect;
-    }
-
-    public void setSelect(Coordinates setSelect) {
-        this.setSelect = setSelect;
-    }
-
-    public String getBgColor() {
-        return bgColor;
-    }
-
-    /**
-     *
-     *
-     * @param bgColor  Text values must be quoted (e.g. 'red', '#ccc', 'rgb(10,10,10)')
-     */
-    public void setBgColor(String bgColor) {
-        this.bgColor = bgColor;
-    }
-
-    public Double getBgOpacity() {
-        return bgOpacity;
-    }
-
-    public void setBgOpacity(Double bgOpacity) {
-        this.bgOpacity = bgOpacity;
-    }
-
-    public PreviewSettings getPreview() {
-        return preview;
-    }
-
-    public void setPreview(PreviewSettings preview) {
-        this.preview = preview;
-    }
-
-    public Integer getBoxWidth() {
-        return boxWidth;
-    }
-
-    public void setBoxWidth(Integer boxWidth) {
-        this.boxWidth = boxWidth;
-    }
-
-    public Integer getBoxHeight() {
-        return boxHeight;
-    }
-
-    public void setBoxHeight(Integer boxHeight) {
-        this.boxHeight = boxHeight;
-    }
-
-    public Coordinates getSetSelect() {
-        return setSelect;
-    }
-
-    public void setSetSelect(Coordinates setSelect) {
-        this.setSelect = setSelect;
-    }
-
-    public boolean isProvideApiController() {
-        return provideApiController;
-    }
-
-    public void setProvideApiController(boolean provideApiController) {
-        this.provideApiController = provideApiController;
+    public boolean isShowingPreview() {
+        return  preview != null;
     }
 }
