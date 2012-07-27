@@ -18,9 +18,9 @@ public class JcropApiUsagePage extends WebPage {
     }
 
     private void initUI() {
-        CroppableSettings settings = new CroppableSettings();
-        settings.setBgColor("pink");
-        settings.setProvideApiController(true);
+        CroppableSettings settings = new CroppableSettings()
+                .setBgColor("pink")
+                .setProvideApiController(true);
         final JcropImage jcropImage = new JcropImage("example1", new PackageResourceReference(HomePage.class, "example.jpg"), settings);
         add(jcropImage);
 
