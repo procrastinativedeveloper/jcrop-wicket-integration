@@ -74,6 +74,10 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
         response.render(OnDomReadyHeaderItem.forScript(generatedScript));
     }
 
+    /**
+     * if you want provide newer version of Jcrop override this method
+     * @param response
+     */
     protected void attachResources(IHeaderResponse response) {
         response.render(JavaScriptHeaderItem.forReference(Application.get().getJavaScriptLibrarySettings().getJQueryReference()));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(JcropBehavior.class, "jquery.Jcrop.css")));
