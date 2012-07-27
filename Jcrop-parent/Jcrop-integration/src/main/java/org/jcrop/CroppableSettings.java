@@ -55,7 +55,7 @@ public class CroppableSettings implements java.io.Serializable {
             result.append("boxHeight: ").append(boxHeight).append(",");
         }
 
-        /*TODO nie dodawać nic poza - element bez średnika, aby js się dobrze generował */
+        /*TODO don't append anything after this element*/
         result.append("bgOpacity: '").append(Math.round(bgOpacity * 100.0) / 100.0).append("'");
         return result.toString();
     }
