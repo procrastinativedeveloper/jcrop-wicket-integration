@@ -3,6 +3,11 @@ package org.jcrop;
 public class Coordinates implements java.io.Serializable {
 
     public Coordinates(Integer x, Integer y, Integer x2, Integer y2) {
+        if (isNullAndNotNegative(x) || isNullAndNotNegative(y)
+                || (isNullAndNotNegative(x2)) || isNullAndNotNegative(y2) ) {
+            throw new RuntimeException("Invalid coordinates: [x=" + x + ", y=" + y + ", x2=" + x2 + ", y2=" + y2 + "]");
+        }
+
         this.x = x;
         this.y = y;
         this.x2 = x2;
@@ -14,6 +19,13 @@ public class Coordinates implements java.io.Serializable {
     private Integer x2 = 0;
     private Integer y2 = 0;
 
+    public String toJsArray() {
+        return "[" + x + ", " + y + ", " + x2 + ", " + y2 + "]";
+    }
+
+    protected boolean isNullAndNotNegative(Integer value) {
+        return ((value == null) || (value < 0));
+    }
     public Integer getX() {
         return x;
     }
@@ -44,10 +56,6 @@ public class Coordinates implements java.io.Serializable {
 
     public void setY2(Integer y2) {
         this.y2 = y2;
-    }
-
-    public String toJsArray() {
-        return "[" + x + ", " + y + ", " + x2 + ", " + y2 + "]";
     }
 
     @Override
