@@ -39,7 +39,7 @@ public class JcropImage extends NonCachingImage {
     protected void initJCrop(CroppableSettings settings) {
         add(jCropBehavior = new JcropBehavior(settings) {
             @Override
-            protected void onCooridnatsChange(Coordinates coordinates) {
+            protected void onCoordinatesChange(Coordinates coordinates) {
                 JcropImage.this.onCooridnatsChange(coordinates);
             }
         });
