@@ -45,7 +45,7 @@ public class CroppableImageHelper implements java.io.Serializable {
 
 
     public static JsFunction getDefaulOnSelectFunction() {
-        String name = "onSelect";
+        String name = "sendNewCoordinatesOnServer";
         String body = "function (c) { " +
                 "var data = 'x=\'+c.x+\'&y=\'+c.y+\'&x2=\'+c.x2+\'&y2=\'+c.y2;" +
                 " $.ajax({type: 'POST', url: '${callbackUrl}', data: data}); " +
