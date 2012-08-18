@@ -53,8 +53,8 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
                     preview.getPreviewHeight()
             );
             settings.putOnChangeCallback(previewJsFunction);
-            settings.putOnSelectCallback(previewJsFunction);
         }
+        settings.putOnSelectCallback(CroppableImageHelper.getDefaulOnSelectFunction());
     }
 
     protected String getProportionVariableName(String markupId) {
@@ -104,7 +104,8 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
         valuesForTemplate.put("settings", settings.generateSettings());
         valuesForTemplate.put("renderApiController", renderApiController(component.getMarkupId()));
 
-        return new PackageTextTemplate(JcropBehavior.class, "InitScript.template").asString(valuesForTemplate);
+        String result = new PackageTextTemplate(JcropBehavior.class, "InitScript.template").asString(valuesForTemplate);
+        return result;
     }
 
     private String renderApiController(String markupIp) {
@@ -180,10 +181,10 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
         Integer y = RequestCycle.get().getRequest().getRequestParameters().getParameterValue("y").toOptionalInteger();
         Integer x2 = RequestCycle.get().getRequest().getRequestParameters().getParameterValue("x2").toOptionalInteger();
         Integer y2 = RequestCycle.get().getRequest().getRequestParameters().getParameterValue("y2").toOptionalInteger();
-        onCooridnatsChange(new Coordinates(x, y, x2, y2));
+        onCoordinatesChange(new Coordinates(x, y, x2, y2));
     }
 
-    protected void onCooridnatsChange(Coordinates coordinates) {
+    protected void onCoordinatesChange(Coordinates coordinates) {
     }
 
     public JcropController getApiController() {
