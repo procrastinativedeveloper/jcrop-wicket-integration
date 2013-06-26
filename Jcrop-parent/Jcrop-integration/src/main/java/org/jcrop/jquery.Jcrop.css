@@ -3,6 +3,12 @@
     text-align: left;
 }
 
+/* fix for conflict between bootstrap and jcrop */
+/* see https://github.com/twitter/bootstrap/issues/1649 */
+.jcrop-holder img, img#previewImg {
+    max-width: none;
+}
+
 .jcrop-vline, .jcrop-hline {
     font-size: 0px;
     position: absolute;
