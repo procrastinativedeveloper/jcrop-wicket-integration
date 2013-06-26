@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 public class JcropImage extends NonCachingImage {
 
     private static final Logger logger = LoggerFactory.getLogger(JcropImage.class);
+    private JcropBehavior jCropBehavior = null;
 
     public JcropImage(String id, IResource imageResource, CroppableSettings settings) {
         super(id, imageResource);
@@ -40,21 +41,19 @@ public class JcropImage extends NonCachingImage {
         add(jCropBehavior = new JcropBehavior(settings) {
             @Override
             protected void onCoordinatesChange(Coordinates coordinates) {
-                JcropImage.this.onCooridnatsChange(coordinates);
+                JcropImage.this.onCoordinatesChange(coordinates);
             }
         });
     }
 
     public JcropController getApiController() {
         if (null != jCropBehavior) {
-            return  jCropBehavior.getApiController();
+            return jCropBehavior.getApiController();
         }
         return null;
     }
 
-    protected void onCooridnatsChange(Coordinates coordinates) {
+    protected void onCoordinatesChange(Coordinates coordinates) {
         logger.info(coordinates.toString());
     }
-
-    private JcropBehavior jCropBehavior = null;
 }

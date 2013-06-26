@@ -19,8 +19,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-
 public class JcropBehavior extends AbstractDefaultAjaxBehavior {
+
+    private CroppableSettings settings = null;
+    private JcropController apiController = null;
+    private boolean provideDefaultJsImplementation = true;
 
     public JcropBehavior() {
         this.settings = new CroppableSettings();
@@ -43,15 +46,13 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
 
     protected void provideDefaultJsImplementation(String wicketId) {
         if (settings.isShowingPreview()) {
-
             PreviewSettings preview = settings.getPreview();
             JsFunction previewJsFunction = CroppableImageHelper.getDefaultPreviewFunction(
                     wicketId,
                     getProportionVariableName(wicketId),
                     preview.getPreviewDivName(),
                     preview.getPreviewWidth(),
-                    preview.getPreviewHeight()
-            );
+                    preview.getPreviewHeight());
             settings.putOnChangeCallback(previewJsFunction);
         }
         settings.putOnSelectCallback(CroppableImageHelper.getDefaulOnSelectFunction());
@@ -76,6 +77,7 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
 
     /**
      * if you want provide newer version of Jcrop override this method
+     *
      * @param response
      */
     protected void attachResources(IHeaderResponse response) {
@@ -93,9 +95,9 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
         if (settings.isShowingPreview()) {
             PreviewSettings preview = settings.getPreview();
 
-            appendPreviewImage = String.format("var imageSrc = $('#%s').attr('src'); " +
-                    "$('#%s').append('<img id=\"previewImg\" src=\"' + imageSrc + '\" />').css({'width': '%dpx', 'height':'%dpx', 'overflow': 'hidden'});"
-                    , component.getMarkupId(), preview.getPreviewDivName(), preview.getPreviewWidth(), preview.getPreviewHeight());
+            appendPreviewImage = String.format("var imageSrc = $('#%s').attr('src'); "
+                    + "$('#%s').append('<img id=\"previewImg\" src=\"' + imageSrc + '\" />').css({'width': '%dpx', 'height':'%dpx', 'overflow': 'hidden'});",
+                    component.getMarkupId(), preview.getPreviewDivName(), preview.getPreviewWidth(), preview.getPreviewHeight());
         }
         Map<String, String> valuesForTemplate = new HashMap<String, String>();
         valuesForTemplate.put("appendPreviewImage", appendPreviewImage);
@@ -111,9 +113,9 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
     private String renderApiController(String markupIp) {
         String result = "";
         if (settings.isProvideApiController()) {
-          String apiControllerVariableName = "window.jcrop_api_" + markupIp;
-          apiController = new JcropController(apiControllerVariableName);
-          return ", function() {"+apiControllerVariableName+"=this}";
+            String apiControllerVariableName = "window.jcrop_api_" + markupIp;
+            apiController = new JcropController(apiControllerVariableName);
+            return ", function() {" + apiControllerVariableName + "=this}";
         }
         return result;
     }
@@ -190,10 +192,4 @@ public class JcropBehavior extends AbstractDefaultAjaxBehavior {
     public JcropController getApiController() {
         return apiController;
     }
-
-    private CroppableSettings settings = null;
-
-    private JcropController apiController = null;
-
-    private boolean provideDefaultJsImplementation = true;
 }
